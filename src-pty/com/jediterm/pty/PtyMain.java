@@ -27,6 +27,7 @@ public class PtyMain extends AbstractTerminalFrame {
             Map<String, String> envs = Maps.newHashMap(System.getenv());
             envs.put("TERM", "xterm");
             String[] command = new String[]{"/bin/bash", "--login"};
+//            String[] command = new String[]{"ssh", "root@fl1"};
 
             if (UIUtil.isWindows) {
                 command = new String[]{"cmd.exe"};
