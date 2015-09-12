@@ -59,17 +59,14 @@ public class CharUtils {
             sb.append(EMPTY_CHAR);
             sb.append(NONPRINTING_NAMES[c]);
             return CharacterType.NONPRINTING;
-        }
-        else if (c == DEL) {
+        } else if (c == DEL) {
             sb.append(" DEL");
             return CharacterType.NONPRINTING;
-        }
-        else if (c > 0x1F && c <= 0x7E) {
+        } else if (c > 0x1F && c <= 0x7E) {
             if (last != CharacterType.PRINTING) sb.append(EMPTY_CHAR);
             sb.append(c);
             return CharacterType.PRINTING;
-        }
-        else {
+        } else {
             sb.append(" 0x").append(Integer.toHexString(c));
             return CharacterType.NONASCII;
         }
@@ -79,7 +76,7 @@ public class CharUtils {
         CharacterType last = CharacterType.NONPRINTING;
         final int end = begin + length;
         for (int i = begin; i < end; i++) {
-            final char c = (char)bs[i];
+            final char c = (char) bs[i];
             last = appendChar(sb, last, c);
         }
     }
@@ -89,7 +86,7 @@ public class CharUtils {
         final byte[] bytes = new byte[bytesAsInt.length];
         int i = 0;
         for (final int byteAsInt : bytesAsInt) {
-            bytes[i] = (byte)byteAsInt;
+            bytes[i] = (byte) byteAsInt;
             i++;
         }
         return bytes;
@@ -115,7 +112,7 @@ public class CharUtils {
 
     public static CharBuffer heavyDecCompatibleBuffer(CharBuffer buf) {
         char[] c = Arrays.copyOfRange(buf.getBuf(), 0, buf.getBuf().length);
-        for(int i = 0; i < c.length; i++) {
+        for (int i = 0; i < c.length; i++) {
             c[i] = CharacterSets.getHeavyDecBoxChar(c[i]);
         }
         return new CharBuffer(c, buf.getStart(), buf.getLength());
